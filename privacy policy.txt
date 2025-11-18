@@ -1,0 +1,71 @@
+Privacy Policy – Frequency Lab
+
+Effective Date: 01.01.2025
+
+Welcome to Frequency Lab!
+
+This Privacy Policy (“Policy”) outlines how Frequency Lab collects, uses, shares, and protects personal and non-personal information from users of our website and services.
+
+By accessing www.flabbd.com ("Website"), you agree to this Policy as per the Information and Communication Technology Act, 2006 of Bangladesh.
+
+1. Collection of Information
+
+1.1 Personal Information
+We may collect:
+- Full Name
+- Contact Number
+- Email Address
+- Date of Birth
+- Photo
+- Address
+- Gender
+- IP Address
+- Social Media Login Info (when applicable)
+
+1.2 Non-Personal Information
+- Browser Type
+- Location Data
+- ISP Details
+- Usage Duration
+
+2. User Responsibility
+By using this website, you confirm that:
+- Information provided is accurate and belongs to you or is shared with permission.
+- Your usage does not violate any laws or rights.
+
+3. Purpose of Information Use
+Your information helps us to:
+- Provide updates about our programs and services
+- Improve user experience
+- Communicate regarding account management and security
+- Conduct internal research and analytics
+- Prevent fraud or misuse
+
+4. Information Sharing
+We may share data with:
+- Internal team members
+- Service partners (under confidentiality agreements)
+- Authorities when legally required
+We ensure that such sharing does not harm your rights or privacy.
+
+5. External Links
+Our Website may link to third-party sites. We are not responsible for their privacy practices or content.
+
+6. Security of Information
+We implement:
+- Data encryption
+- Access controls
+- Regular monitoring
+Despite our efforts, no system is 100% secure. We advise users to take precautions while sharing sensitive information.
+
+7. Data Withdrawal
+Users may request to remove or update their personal data by contacting: privacy@flabbd.com
+
+8. Grievance Redressal
+For complaints or privacy concerns, please contact: grievance@flabbd.com
+
+9. Use of APIs
+We may use third-party APIs (e.g., YouTube API) and comply with their privacy terms.
+
+10. Policy Updates
+This Policy may be updated at any time. Continued use of the Website implies acceptance of the revised terms.

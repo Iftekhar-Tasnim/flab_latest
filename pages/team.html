@@ -120,59 +120,297 @@
         </div>
     </nav>
 
-    <!-- Spacer for fixed navbar -->
-    <div class="h-20"></div>
-<main class="container mx-auto px-4 py-8">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-4xl font-bold mb-8 text-prussian-blue-800">Our Team</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Team Member 1 -->
-                <div class="card bg-white shadow-xl border border-platinum-200">
-                    <figure class="px-6 pt-6">
-                        <div class="avatar placeholder">
-                            <div class="bg-yale-blue-200 text-prussian-blue-700 rounded-full w-24">
-                                <span class="text-3xl">TM</span>
-                            </div>
-                        </div>
-                    </figure>
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title text-prussian-blue-700">Team Member 1</h2>
-                        <p class="text-platinum-600 text-sm">Position/Role</p>
-                        <p class="text-platinum-700 text-sm">Brief bio or description goes here.</p>
-                    </div>
-                </div>
-                <!-- Team Member 2 -->
-                <div class="card bg-white shadow-xl border border-platinum-200">
-                    <figure class="px-6 pt-6">
-                        <div class="avatar placeholder">
-                            <div class="bg-yale-blue-200 text-prussian-blue-700 rounded-full w-24">
-                                <span class="text-3xl">TM</span>
-                            </div>
-                        </div>
-                    </figure>
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title text-prussian-blue-700">Team Member 2</h2>
-                        <p class="text-platinum-600 text-sm">Position/Role</p>
-                        <p class="text-platinum-700 text-sm">Brief bio or description goes here.</p>
-                    </div>
-                </div>
-                <!-- Team Member 3 -->
-                <div class="card bg-white shadow-xl border border-platinum-200">
-                    <figure class="px-6 pt-6">
-                        <div class="avatar placeholder">
-                            <div class="bg-yale-blue-200 text-prussian-blue-700 rounded-full w-24">
-                                <span class="text-3xl">TM</span>
-                            </div>
-                        </div>
-                    </figure>
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title text-prussian-blue-700">Team Member 3</h2>
-                        <p class="text-platinum-600 text-sm">Position/Role</p>
-                        <p class="text-platinum-700 text-sm">Brief bio or description goes here.</p>
-                    </div>
+    <!-- Main Content -->
+    <main class="min-h-screen bg-gradient-to-b from-platinum-50 via-white to-platinum-100">
+        
+        <!-- Hero Section -->
+        <div class="hero min-h-[40vh] bg-gradient-to-br from-yale-blue-600 via-yale-blue-700 to-prussian-blue-800 text-white">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold text-white">Our Team</h1>
+                    <p class="py-6 text-white/90">
+                        Meet the passionate individuals driving innovation and education at Frequency Lab
+                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- Board of Directors -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <div class="badge badge-primary badge-lg mb-4">Leadership</div>
+                <h2 class="text-3xl font-bold">Board of Directors</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="card bg-white shadow-2xl border border-platinum-200">
+                    <div class="card-body">
+                        <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                            <div class="avatar">
+                                <div class="w-32 rounded-lg ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    <img src="../assets/team/Sarowar.JPG" alt="Md. Golam Sarowar" />
+                                </div>
+                            </div>
+                            <div class="flex-1 text-center md:text-left">
+                                <h3 class="card-title text-2xl justify-center md:justify-start">Md. Golam Sarowar</h3>
+                                
+                                <div class="badge badge-secondary badge-lg my-3 ">Founder & CEO</div>
+                                <br>
+                                
+                                <p class="text-base-content/80 leading-relaxed">
+                                    Technology strategist, entrepreneur, and researcher specializing in IoT, robotics, and STEM education. 
+                                    With a B.Sc. in Electrical and Electronic Engineering from AIUB and currently pursuing an Executive MBA, 
+                                    Golam blends technical expertise with business strategy. Leading smart device development, robotics training, 
+                                    and software innovation to advance education, industry, and sustainability.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Team -->
+        <section class="container mx-auto px-4 pb-20">
+            <div class="text-center mb-12">
+                
+                <h2 class="text-3xl font-bold text-prussian-blue-800">Executive Team</h2>
+                <p class="text-sm md:text-base text-platinum-600">A diverse team of facilitators, coordinators, and innovators</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
+                
+                <!-- CEO -->
+                <div class="card card-compact bg-white shadow-lg border border-platinum-200 hover:shadow-2xl transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Sarowar.JPG" alt="Md. Golam Sarowar" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Md. Golam Sarowar</h3>
+                        <div class="badge badge-xs badge-primary">CEO</div>
+                    </div>
+                </div>
+
+                <!-- Senior Coordinator -->
+                <div class="card card-compact bg-white shadow-lg border border-platinum-200 hover:shadow-2xl transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-secondary to-secondary/30 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Shahnaz Sharmin.jpeg" alt="Sahanaz Sharmin" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Sahanaz Sharmin</h3>
+                        <div class="badge badge-xs badge-secondary">Senior Coordinator</div>
+                    </div>
+                </div>
+
+                <!-- STEM Coordinator -->
+                <div class="card card-compact bg-white shadow-lg border border-platinum-200 hover:shadow-2xl transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-fresh-sky-500 to-fresh-sky-200 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Ayon_STEM Coordinator (SCOPE PROJECT).jpg" alt="Samin Yaser Ayon" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Samin Yaser Ayon</h3>
+                        <div class="badge badge-xs badge-accent">STEM Coordinator</div>
+                    </div>
+                </div>
+
+                 <!-- Facilitator 3 -->
+                 <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/asif.png" alt="Iftekhar Tasnim Md. Asif" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Iftekhar Tasnim Md. Asif</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 1 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-yale-blue-500 to-yale-blue-200 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Tarikul Islam Juel (STEM Teacher).jpeg" alt="Tarikul Islam Juel" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Tarikul Islam Juel</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 2 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-yale-blue-500 to-yale-blue-200 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Al Mamun Mizan (Stem Teacher).jpg" alt="Al Mamun Mizan" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Al Mamun Mizan</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+               
+
+                <!-- Facilitator 4 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Istiak.jpg" alt="Istiak Ahmed" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Istiak Ahmed</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 5 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/MD. HEDAET SHAHRIAR HIMON( STEM Teacher).jpg" alt="Hedaet Shahriar Himon" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Hedaet Shahriar Himon</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 6 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Bipul Chanda Das(Stem Teacher)-min.JPG" alt="Bipul Chandra Das" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Bipul Chandra Das</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 7 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Atikur Rahman(STEM Teacher).jpeg" alt="Atikur Rahman" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Atikur Rahman</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 8 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Tasnia Ahmed.jpg" alt="Tasnia Ahmed" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Tasnia Ahmed</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 9 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Sumaiah Islam Mitu(STEM Teacher).jpg" alt="Sumaiah Islam Mitu" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Sumaiah Islam Mitu</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+                <!-- Facilitator 10 -->
+                <div class="card card-compact bg-white shadow-md border border-platinum-200 hover:shadow-lg transition-all duration-300 rounded-xl w-full max-w-[260px] mx-auto">
+                    <div class="h-1.5 w-full bg-gradient-to-r from-prussian-blue-600 to-prussian-blue-300 rounded-t-xl"></div>
+                    <figure class="px-2 pt-2">
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="../assets/team/Sakib_Hasan(STEM_Teacher).jpg" alt="Md. Sakib Hasan" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center px-2 py-2 space-y-1">
+                        <h3 class="text-[11px] font-semibold tracking-wide uppercase text-prussian-blue-800">Md. Sakib Hasan</h3>
+                        <div class="badge badge-xs badge-ghost">STEM Facilitator</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-base-300 py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4">Join Our Team</h2>
+                    <p class="text-lg mb-8 max-w-2xl mx-auto">
+                        We're always looking for passionate individuals to help shape the future of education
+                    </p>
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        Get in Touch
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -292,9 +530,9 @@
                         © 2024 <span class="text-white font-semibold">Frequency Lab</span>. All rights reserved.
                     </p>
                     <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-                        <a href="#" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300">Privacy Policy</a>
+                        <a href="privacy-policy.html" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300">Privacy Policy</a>
                         <span class="text-prussian-blue-700">•</span>
-                        <a href="#" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300">Terms of Service</a>
+                        <a href="safeguard.html" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300">Safeguard Policy</a>
                         <span class="text-prussian-blue-700">•</span>
                         <a href="contact.html" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300">Contact</a>
                     </div>
@@ -305,4 +543,5 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
+
 
