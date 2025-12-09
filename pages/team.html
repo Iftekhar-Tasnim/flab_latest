@@ -7,8 +7,58 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="../dist/output.css" rel="stylesheet">
+    
+    <!-- Typography Styles -->
+    <style>
+        /* Set Inter as default font for body and all UI elements */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Apply Inter to paragraphs, lists, navigation, buttons, forms, footer */
+        p, li, ul, ol, a, button, input, textarea, select, 
+        .nav-link, .mobile-nav-link, footer, 
+        .btn, .text-platinum-300, .text-platinum-400, 
+        .text-platinum-600, .text-platinum-700 {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Apply Space Grotesk to all headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Hero section headings */
+        .hero h1, section h1, section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Card titles and section headings */
+        h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        
+        /* Navigation links - Inter with uppercase option */
+        .nav-link, .mobile-nav-link {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Button text - Inter with stronger weight */
+        .btn {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -50,14 +100,15 @@
                         Gallery
                         <span class="nav-indicator"></span>
                     </a>
-                    <a href="#/blog" class="nav-link px-4 py-2 text-sm font-medium text-platinum-100 hover:text-yale-blue-400 relative group transition-all duration-300 rounded-lg hover:bg-white/5">
+                    <!-- Blog and Shop links hidden - will be used later -->
+                    <!-- <a href="#/blog" class="nav-link px-4 py-2 text-sm font-medium text-platinum-100 hover:text-yale-blue-400 relative group transition-all duration-300 rounded-lg hover:bg-white/5">
                         Blog
                         <span class="nav-indicator"></span>
                     </a>
                     <a href="#/shop" class="nav-link px-4 py-2 text-sm font-medium text-platinum-100 hover:text-yale-blue-400 relative group transition-all duration-300 rounded-lg hover:bg-white/5">
                         Shop
                         <span class="nav-indicator"></span>
-                    </a>
+                    </a> -->
                     <a href="#/contact" class="nav-link px-4 py-2 text-sm font-medium text-platinum-100 hover:text-yale-blue-400 relative group transition-all duration-300 rounded-lg hover:bg-white/5">
                         Contact Us
                         <span class="nav-indicator"></span>
@@ -103,12 +154,13 @@
                     <a href="#/gallery" class="mobile-nav-link block px-4 py-3 text-base font-medium text-platinum-100 hover:bg-white/10 hover:text-yale-blue-400 rounded-lg transition-all duration-300 border border-transparent hover:border-white/10">
                         Gallery
                     </a>
-                    <a href="#/blog" class="mobile-nav-link block px-4 py-3 text-base font-medium text-platinum-100 hover:bg-white/10 hover:text-yale-blue-400 rounded-lg transition-all duration-300 border border-transparent hover:border-white/10">
+                    <!-- Blog and Shop links hidden - will be used later -->
+                    <!-- <a href="#/blog" class="mobile-nav-link block px-4 py-3 text-base font-medium text-platinum-100 hover:bg-white/10 hover:text-yale-blue-400 rounded-lg transition-all duration-300 border border-transparent hover:border-white/10">
                         Blog
                     </a>
                     <a href="#/shop" class="mobile-nav-link block px-4 py-3 text-base font-medium text-platinum-100 hover:bg-white/10 hover:text-yale-blue-400 rounded-lg transition-all duration-300 border border-transparent hover:border-white/10">
                         Shop
-                    </a>
+                    </a> -->
                     <a href="#/contact" class="mobile-nav-link block px-4 py-3 text-base font-medium text-platinum-100 hover:bg-white/10 hover:text-yale-blue-400 rounded-lg transition-all duration-300 border border-transparent hover:border-white/10">
                         Contact Us
                     </a>
@@ -539,8 +591,9 @@
                     <!-- Additional Links -->
                     <div class="mt-6 pt-6 border-t border-prussian-blue-800">
                         <div class="flex flex-wrap gap-x-4 gap-y-2">
-                            <a href="#/blog" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300 text-sm">Blog</a>
-                            <a href="#/shop" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300 text-sm">Shop</a>
+                            <!-- Blog and Shop links hidden - will be used later -->
+                            <!-- <a href="#/blog" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300 text-sm">Blog</a>
+                            <a href="#/shop" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300 text-sm">Shop</a> -->
                             <a href="#/publications" class="text-platinum-400 hover:text-yale-blue-400 transition-colors duration-300 text-sm">Publications</a>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ F Lab is an educational organization focused on empowering young innovators thro
 - **JavaScript (Vanilla)** - Client-side interactivity and routing
 - **Tailwind CSS v3.4.1** - Utility-first CSS framework
 - **DaisyUI v4.12.10** - Component library built on Tailwind
-- **Google Fonts** - Exo 2 (headings) & Nunito (body)
+- **Google Fonts** - Space Grotesk (headings) & Inter (body/UI)
 
 ## ✨ Features
 

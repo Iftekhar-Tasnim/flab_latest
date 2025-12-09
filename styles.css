@@ -4,24 +4,24 @@
 
 @layer base {
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   
-  /* Ensure all headings use Exo 2 */
+  /* Ensure all headings use Space Grotesk */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
   }
   
-  /* Ensure body text elements use Nunito */
+  /* Ensure body text elements use Inter */
   p, span:not(h1 span, h2 span, h3 span, h4 span, h5 span, h6 span), 
   div:not(h1, h2, h3, h4, h5, h6), 
   a, li, td, th, label, input, textarea, select, button {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   
-  /* Navigation and brand text can use Exo 2 for emphasis */
+  /* Navigation and brand text use Space Grotesk for emphasis */
   .font-headline {
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
   }
 }
 

@@ -1,4 +1,124 @@
-fonts -
-Headlines - https://fonts.google.com/specimen/Exo+2?query=exo+2
+Here are clean, code‑free instructions you can give to Cursor so it updates the site typography correctly.
 
-Body text - https://fonts.google.com/specimen/Nunito
+---
+
+🔵 Inter – Google Fonts Link
+
+https://fonts.google.com/specimen/Inter
+
+🔵 Space Grotesk – Google Fonts Link
+
+https://fonts.google.com/specimen/Space+Grotesk
+
+
+
+# **Typography Update Instructions (No Code)**
+
+## **1. Add New Fonts to the Project**
+
+* Remove any existing fonts from the project (Google Fonts links, imports, or old font files).
+* Add the following two Google Fonts to the project:
+
+  * **Inter** → for body text and UI elements.
+  * **Space Grotesk** → for headings, titles, hero text, and logo text.
+* Ensure these two fonts are the only fonts applied globally.
+
+---
+
+## **2. Apply Global Typography Rules**
+
+### **Body Text (Default Font)**
+
+* Set **Inter** as the default font for:
+
+  * Paragraphs
+  * List items
+  * Navigation links
+  * Buttons
+  * Form inputs
+  * Footer text
+  * Any general UI components
+* Make sure the line spacing is comfortable and readable.
+
+### **Headings and Titles**
+
+* Use **Space Grotesk** for:
+
+  * H1–H6 headings
+  * Page titles
+  * Hero section headings
+  * Card titles
+  * Section headings
+  * Logo text (if text-based)
+* Headings should appear bold and prominent.
+* Adjust letter spacing slightly for a cleaner tech look.
+
+---
+
+## **3. Remove All Old Typography References**
+
+Search the entire project for:
+
+* Old font names (e.g., Poppins, Roboto, Nunito, Montserrat, etc.)
+* Old font imports
+* Old font-family declarations
+  Remove or replace them so the site uses **only Inter and Space Grotesk**.
+
+---
+
+## **4. Update Component-Level Typography**
+
+For components like:
+
+* Hero section
+* Program cards
+* Feature blocks
+* Navigation menu
+* Footer sections
+  Ensure that:
+* Headings inside these components use **Space Grotesk**.
+* Descriptions and small text use **Inter**.
+
+---
+
+## **5. Improve Visual Hierarchy**
+
+Apply consistent styling patterns:
+
+* Headings should be significantly larger than body text.
+* Body text should be clean, readable, and medium weight.
+* Button text should use Inter with slightly stronger weight.
+* Navigation items may use uppercase with slightly increased spacing.
+
+---
+
+## **6. Ensure Responsive Typography**
+
+* Verify that headings scale properly on mobile.
+* Ensure text doesn’t overflow cards or sections.
+* Adjust spacing so paragraphs remain readable on all screen sizes.
+
+---
+
+## **7. Design Goals to Follow**
+
+* The overall look should feel **modern, clean, tech-inspired, and trustworthy**.
+* Inter gives a professional, neutral base.
+* Space Grotesk adds a modern and sophisticated touch for headings.
+* The combination should improve clarity, visual hierarchy, and overall polish.
+
+---
+
+## **8. Final Consistency Check**
+
+After applying changes, verify:
+
+* All headings use Space Grotesk.
+* All general text uses Inter.
+* No previous fonts appear anywhere.
+* Typography appears consistent across all pages.
+* Mobile, tablet, and desktop views look balanced.
+
+---
+
+These instructions are ready for Cursor. You can now ask it to update your project typography according to this specification.

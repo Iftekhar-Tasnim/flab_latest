@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Nunito', 'sans-serif'],
-        'headline': ['Exo 2', 'sans-serif'],
-        'body': ['Nunito', 'sans-serif'],
+        'sans': ['Inter', 'sans-serif'],
+        'headline': ['Space Grotesk', 'sans-serif'],
+        'body': ['Inter', 'sans-serif'],
       },
       colors: {
         'yale-blue': {
