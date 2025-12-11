@@ -395,6 +395,24 @@ class Router {
             initializeTestimonialsSlider();
         }
         
+        // Initialize gallery lightbox if on gallery page
+        if (this.currentRoute === '/gallery') {
+            // Wait a bit for DOM to be ready, then initialize
+            setTimeout(() => {
+                if (typeof window.initGalleryLightbox === 'function') {
+                    window.initGalleryLightbox();
+                } else {
+                    // Try to find and execute the script if it exists
+                    const galleryScript = document.querySelector('script[src*="gallery"]');
+                    if (!galleryScript) {
+                        // Script is inline, try to trigger it
+                        const event = new Event('DOMContentLoaded');
+                        document.dispatchEvent(event);
+                    }
+                }
+            }, 100);
+        }
+        
         // Links are already intercepted via event delegation, no need to re-intercept
     }
 }

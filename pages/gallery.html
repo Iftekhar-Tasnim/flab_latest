@@ -58,6 +58,156 @@
             font-family: 'Inter', sans-serif;
             font-weight: 600;
         }
+
+        /* Gallery Optimization Styles */
+        .gallery-item {
+            position: relative;
+            min-height: 100%;
+            overflow: hidden;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .gallery-item img {
+            opacity: 1;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -198,11 +348,19 @@
             <div class="container mx-auto px-4">
                 <div class="max-w-7xl mx-auto">
                     <!-- Gallery Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid" style="opacity: 1;">
                         <!-- Photo 1 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2149.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="0" data-title="Lab Activities" data-src="../assets/gallery/IMG_2149.jpg">
+                            <img 
+                                src="../assets/gallery/IMG_2149.jpg" 
+                                alt="Lab Activities - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Lab Activities</p>
                                 </div>
@@ -210,9 +368,17 @@
                         </div>
 
                         <!-- Photo 2 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2180.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="1" data-title="Learning in Action" data-src="../assets/gallery/IMG_2180.jpg">
+                            <img 
+                                src="../assets/gallery/IMG_2180.jpg" 
+                                alt="Learning in Action - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Learning in Action</p>
                                 </div>
@@ -220,9 +386,17 @@
                         </div>
 
                         <!-- Photo 3 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2228.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="2" data-title="Innovation Hub">
+                            <img 
+                                src="../assets/gallery/IMG_2228.jpg" 
+                                alt="Innovation Hub - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Innovation Hub</p>
                                 </div>
@@ -230,9 +404,17 @@
                         </div>
 
                         <!-- Photo 4 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2231.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="3" data-title="Student Projects">
+                            <img 
+                                src="../assets/gallery/IMG_2231.jpg" 
+                                alt="Student Projects - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Student Projects</p>
                                 </div>
@@ -240,9 +422,17 @@
                         </div>
 
                         <!-- Photo 5 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2235.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="4" data-title="Workshops">
+                            <img 
+                                src="../assets/gallery/IMG_2235.jpg" 
+                                alt="Workshops - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Workshops</p>
                                 </div>
@@ -250,9 +440,17 @@
                         </div>
 
                         <!-- Photo 6 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2238.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="5" data-title="Collaborative Learning">
+                            <img 
+                                src="../assets/gallery/IMG_2238.jpg" 
+                                alt="Collaborative Learning - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Collaborative Learning</p>
                                 </div>
@@ -260,9 +458,17 @@
                         </div>
 
                         <!-- Photo 7 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2276.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="6" data-title="STEM Education">
+                            <img 
+                                src="../assets/gallery/IMG_2276.jpg" 
+                                alt="STEM Education - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">STEM Education</p>
                                 </div>
@@ -270,9 +476,17 @@
                         </div>
 
                         <!-- Photo 8 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2281.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="7" data-title="Hands-on Experience">
+                            <img 
+                                src="../assets/gallery/IMG_2281.jpg" 
+                                alt="Hands-on Experience - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Hands-on Experience</p>
                                 </div>
@@ -280,9 +494,17 @@
                         </div>
 
                         <!-- Photo 9 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2283.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="8" data-title="Tech Sessions">
+                            <img 
+                                src="../assets/gallery/IMG_2283.jpg" 
+                                alt="Tech Sessions - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Tech Sessions</p>
                                 </div>
@@ -290,9 +512,17 @@
                         </div>
 
                         <!-- Photo 10 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2342.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="9" data-title="Coding Classes">
+                            <img 
+                                src="../assets/gallery/IMG_2342.jpg" 
+                                alt="Coding Classes - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Coding Classes</p>
                                 </div>
@@ -300,9 +530,17 @@
                         </div>
 
                         <!-- Photo 11 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2366.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="10" data-title="Robotics Lab">
+                            <img 
+                                src="../assets/gallery/IMG_2366.jpg" 
+                                alt="Robotics Lab - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Robotics Lab</p>
                                 </div>
@@ -310,9 +548,17 @@
                         </div>
 
                         <!-- Photo 12 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2374.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="11" data-title="Electronics Workshop">
+                            <img 
+                                src="../assets/gallery/IMG_2374.jpg" 
+                                alt="Electronics Workshop - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Electronics Workshop</p>
                                 </div>
@@ -320,9 +566,17 @@
                         </div>
 
                         <!-- Photo 13 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2571.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="12" data-title="Team Activities">
+                            <img 
+                                src="../assets/gallery/IMG_2571.jpg" 
+                                alt="Team Activities - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Team Activities</p>
                                 </div>
@@ -330,9 +584,17 @@
                         </div>
 
                         <!-- Photo 14 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2581.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="13" data-title="Creative Projects">
+                            <img 
+                                src="../assets/gallery/IMG_2581.jpg" 
+                                alt="Creative Projects - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Creative Projects</p>
                                 </div>
@@ -340,9 +602,17 @@
                         </div>
 
                         <!-- Photo 15 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2673.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="14" data-title="Innovation Day">
+                            <img 
+                                src="../assets/gallery/IMG_2673.jpg" 
+                                alt="Innovation Day - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Innovation Day</p>
                                 </div>
@@ -350,9 +620,17 @@
                         </div>
 
                         <!-- Photo 16 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2686.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="15" data-title="Student Showcase">
+                            <img 
+                                src="../assets/gallery/IMG_2686.jpg" 
+                                alt="Student Showcase - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Student Showcase</p>
                                 </div>
@@ -360,9 +638,17 @@
                         </div>
 
                         <!-- Photo 17 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_2749.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="16" data-title="Lab Sessions">
+                            <img 
+                                src="../assets/gallery/IMG_2749.jpg" 
+                                alt="Lab Sessions - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Lab Sessions</p>
                                 </div>
@@ -370,9 +656,17 @@
                         </div>
 
                         <!-- Photo 18 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9101.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="17" data-title="Learning Space">
+                            <img 
+                                src="../assets/gallery/IMG_9101.jpg" 
+                                alt="Learning Space - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Learning Space</p>
                                 </div>
@@ -380,9 +674,17 @@
                         </div>
 
                         <!-- Photo 19 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9115.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="18" data-title="Tech Education">
+                            <img 
+                                src="../assets/gallery/IMG_9115.jpg" 
+                                alt="Tech Education - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Tech Education</p>
                                 </div>
@@ -390,9 +692,17 @@
                         </div>
 
                         <!-- Photo 20 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9371.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="19" data-title="Practical Skills">
+                            <img 
+                                src="../assets/gallery/IMG_9371.jpg" 
+                                alt="Practical Skills - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Practical Skills</p>
                                 </div>
@@ -400,9 +710,17 @@
                         </div>
 
                         <!-- Photo 21 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9492.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="20" data-title="Interactive Sessions">
+                            <img 
+                                src="../assets/gallery/IMG_9492.jpg" 
+                                alt="Interactive Sessions - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Interactive Sessions</p>
                                 </div>
@@ -410,9 +728,17 @@
                         </div>
 
                         <!-- Photo 22 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9608.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="21" data-title="Group Work">
+                            <img 
+                                src="../assets/gallery/IMG_9608.jpg" 
+                                alt="Group Work - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Group Work</p>
                                 </div>
@@ -420,9 +746,17 @@
                         </div>
 
                         <!-- Photo 23 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9613.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="22" data-title="Classroom Activities">
+                            <img 
+                                src="../assets/gallery/IMG_9613.jpg" 
+                                alt="Classroom Activities - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Classroom Activities</p>
                                 </div>
@@ -430,9 +764,17 @@
                         </div>
 
                         <!-- Photo 24 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9619.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="23" data-title="Project Development">
+                            <img 
+                                src="../assets/gallery/IMG_9619.jpg" 
+                                alt="Project Development - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Project Development</p>
                                 </div>
@@ -440,9 +782,17 @@
                         </div>
 
                         <!-- Photo 25 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9655.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="24" data-title="Learning Together">
+                            <img 
+                                src="../assets/gallery/IMG_9655.jpg" 
+                                alt="Learning Together - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Learning Together</p>
                                 </div>
@@ -450,9 +800,17 @@
                         </div>
 
                         <!-- Photo 26 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9687.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="25" data-title="Young Innovators">
+                            <img 
+                                src="../assets/gallery/IMG_9687.jpg" 
+                                alt="Young Innovators - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Young Innovators</p>
                                 </div>
@@ -460,9 +818,17 @@
                         </div>
 
                         <!-- Photo 27 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9705.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="26" data-title="Experiential Learning">
+                            <img 
+                                src="../assets/gallery/IMG_9705.jpg" 
+                                alt="Experiential Learning - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Experiential Learning</p>
                                 </div>
@@ -470,9 +836,17 @@
                         </div>
 
                         <!-- Photo 28 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9715.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="27" data-title="Skill Building">
+                            <img 
+                                src="../assets/gallery/IMG_9715.jpg" 
+                                alt="Skill Building - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Skill Building</p>
                                 </div>
@@ -480,9 +854,17 @@
                         </div>
 
                         <!-- Photo 29 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9722.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="28" data-title="Technology Hub">
+                            <img 
+                                src="../assets/gallery/IMG_9722.jpg" 
+                                alt="Technology Hub - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Technology Hub</p>
                                 </div>
@@ -490,9 +872,17 @@
                         </div>
 
                         <!-- Photo 30 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9724.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="29" data-title="Collaborative Space">
+                            <img 
+                                src="../assets/gallery/IMG_9724.jpg" 
+                                alt="Collaborative Space - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Collaborative Space</p>
                                 </div>
@@ -500,9 +890,17 @@
                         </div>
 
                         <!-- Photo 31 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9727.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="30" data-title="Future Leaders">
+                            <img 
+                                src="../assets/gallery/IMG_9727.jpg" 
+                                alt="Future Leaders - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Future Leaders</p>
                                 </div>
@@ -510,9 +908,17 @@
                         </div>
 
                         <!-- Photo 32 -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square">
-                            <img src="../assets/gallery/IMG_9739.jpg" alt="Frequency Lab Gallery" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer aspect-square" data-index="31" data-title="Innovation Center">
+                            <img 
+                                src="../assets/gallery/IMG_9739.jpg" 
+                                alt="Innovation Center - Frequency Lab Gallery" 
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
+                                onload="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                                onerror="this.classList.add('loaded'); const item = this.closest('.gallery-item'); if(item) { item.classList.add('loaded'); }"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-prussian-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
                                 <div class="p-4 text-white">
                                     <p class="text-sm font-medium">Innovation Center</p>
                                 </div>
@@ -540,6 +946,17 @@
             </div>
         </section>
     </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightbox-image" src="" alt="" loading="eager">
+            <div class="lightbox-info" id="lightbox-info"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gradient-to-b from-prussian-blue-900 to-prussian-blue-950 text-platinum-100">
@@ -672,6 +1089,330 @@
             </div>
         </div>
     </footer>
+
+    <!-- Gallery Image Loading Handler (runs immediately) -->
+    <script>
+        // Handle cached images - no loader needed
+        (function() {
+            function checkCachedImages() {
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                galleryItems.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (img) {
+                        // Mark as loaded if already cached
+                        if (img.complete && img.naturalHeight !== 0) {
+                            img.classList.add('loaded');
+                            item.classList.add('loaded');
+                        } else {
+                            // Mark as loaded when image loads
+                            img.addEventListener('load', function() {
+                                this.classList.add('loaded');
+                                const item = this.closest('.gallery-item');
+                                if (item) {
+                                    item.classList.add('loaded');
+                                }
+                            }, { once: true });
+                            
+                            // Handle errors
+                            img.addEventListener('error', function() {
+                                this.classList.add('loaded');
+                                const item = this.closest('.gallery-item');
+                                if (item) {
+                                    item.classList.add('loaded');
+                                }
+                            }, { once: true });
+                        }
+                    }
+                });
+            }
+            
+            // Run immediately
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', checkCachedImages);
+            } else {
+                checkCachedImages();
+            }
+        })();
+    </script>
+
+    <!-- Gallery Lightbox Script -->
+    <script>
+        (function() {
+            'use strict';
+            
+            let currentIndex = 0;
+            let images = [];
+            let lightbox, lightboxImage, lightboxInfo, lightboxClose, lightboxPrev, lightboxNext;
+            
+            function initLightbox() {
+                // Get all elements
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                
+                // Handle images that are already loaded (cached) - double check
+                galleryItems.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (img && img.complete && img.naturalHeight !== 0) {
+                        img.classList.add('loaded');
+                        item.classList.add('loaded');
+                    }
+                });
+                
+                // Get or create lightbox
+                lightbox = document.getElementById('lightbox');
+                if (!lightbox) {
+                    // Create lightbox if it doesn't exist (in case router removed it)
+                    lightbox = document.createElement('div');
+                    lightbox.id = 'lightbox';
+                    lightbox.className = 'lightbox';
+                    lightbox.setAttribute('role', 'dialog');
+                    lightbox.setAttribute('aria-modal', 'true');
+                    lightbox.setAttribute('aria-label', 'Image gallery lightbox');
+                    lightbox.innerHTML = `
+                        <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+                        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+                        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+                        <div class="lightbox-content">
+                            <img class="lightbox-image" id="lightbox-image" src="" alt="" loading="eager">
+                            <div class="lightbox-info" id="lightbox-info"></div>
+                        </div>
+                    `;
+                    document.body.appendChild(lightbox);
+                }
+                
+                lightboxImage = document.getElementById('lightbox-image');
+                lightboxInfo = document.getElementById('lightbox-info');
+                lightboxClose = document.getElementById('lightbox-close');
+                lightboxPrev = document.getElementById('lightbox-prev');
+                lightboxNext = document.getElementById('lightbox-next');
+                
+                // Check if all elements exist
+                if (!lightbox || !lightboxImage || !lightboxInfo || !lightboxClose || !lightboxPrev || !lightboxNext) {
+                    console.error('Lightbox elements not found after creation attempt');
+                    return false;
+                }
+                
+                if (galleryItems.length === 0) {
+                    console.warn('No gallery items found, will retry...');
+                    return false;
+                }
+                
+                // Reset arrays
+                images = [];
+                
+                // Initialize gallery images array
+                galleryItems.forEach((item, index) => {
+                    const img = item.querySelector('img');
+                    if (!img) return;
+                    
+                    const title = item.getAttribute('data-title') || img.getAttribute('alt') || '';
+                    const src = img.getAttribute('src');
+                    
+                    if (src) {
+                        images.push({ src, title, index });
+                        
+                        // Remove any existing click listeners by cloning (to avoid duplicates)
+                        const existingClickHandler = item.onclick;
+                        if (existingClickHandler) {
+                            item.onclick = null;
+                        }
+                        
+                        // Add click event to open lightbox
+                        item.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            openLightbox(index);
+                        }, { once: false });
+                        
+                        // Also make it clear it's clickable
+                        item.style.cursor = 'pointer';
+                    }
+                });
+                
+                // Event listeners
+                if (lightboxClose) {
+                    lightboxClose.addEventListener('click', closeLightbox);
+                }
+                if (lightboxNext) {
+                    lightboxNext.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        nextImage();
+                    });
+                }
+                if (lightboxPrev) {
+                    lightboxPrev.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        prevImage();
+                    });
+                }
+                
+                // Close on background click
+                if (lightbox) {
+                    lightbox.addEventListener('click', (e) => {
+                        if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                            closeLightbox();
+                        }
+                    });
+                }
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', handleKeydown);
+                
+                console.log('Gallery lightbox initialized with', images.length, 'images');
+                return true;
+            }
+            
+            function handleKeydown(e) {
+                if (!lightbox || !lightbox.classList.contains('active')) return;
+                
+                switch(e.key) {
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        nextImage();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        prevImage();
+                        break;
+                }
+            }
+            
+            function openLightbox(index) {
+                if (!lightbox || images.length === 0) return;
+                
+                if (index < 0 || index >= images.length) {
+                    console.error('Invalid index:', index);
+                    return;
+                }
+                
+                currentIndex = index;
+                updateLightbox();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeLightbox() {
+                if (!lightbox) return;
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Preload adjacent images for better performance
+            function preloadAdjacentImages(index) {
+                const preloadIndices = [index - 1, index + 1].filter(i => i >= 0 && i < images.length);
+                preloadIndices.forEach(i => {
+                    const img = new Image();
+                    img.src = images[i].src;
+                });
+            }
+            
+            function updateLightbox() {
+                if (!lightboxImage || !lightboxInfo || images.length === 0) return;
+                
+                const currentImage = images[currentIndex];
+                if (currentImage) {
+                    lightboxImage.src = currentImage.src;
+                    lightboxImage.alt = currentImage.title;
+                    lightboxInfo.textContent = `${currentIndex + 1} / ${images.length} - ${currentImage.title}`;
+                    
+                    // Update navigation buttons visibility
+                    if (lightboxPrev) {
+                        lightboxPrev.style.display = currentIndex === 0 ? 'none' : 'flex';
+                    }
+                    if (lightboxNext) {
+                        lightboxNext.style.display = currentIndex === images.length - 1 ? 'none' : 'flex';
+                    }
+                    
+                    // Preload adjacent images
+                    preloadAdjacentImages(currentIndex);
+                }
+            }
+            
+            function nextImage() {
+                if (currentIndex < images.length - 1) {
+                    currentIndex++;
+                    updateLightbox();
+                }
+            }
+            
+            function prevImage() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateLightbox();
+                }
+            }
+            
+            // Initialize when DOM is ready
+            function tryInit() {
+                // Check if gallery items exist
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                if (galleryItems.length > 0) {
+                    initLightbox();
+                    return true;
+                }
+                return false;
+            }
+            
+            // Try multiple initialization strategies
+            let initAttempts = 0;
+            const maxAttempts = 10;
+            
+            function attemptInit() {
+                initAttempts++;
+                if (tryInit()) {
+                    return true;
+                }
+                if (initAttempts < maxAttempts) {
+                    setTimeout(attemptInit, 100);
+                } else {
+                    console.warn('Failed to initialize gallery lightbox after', maxAttempts, 'attempts');
+                }
+                return false;
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(attemptInit, 50);
+                });
+            } else {
+                // DOM already loaded - try immediately
+                setTimeout(attemptInit, 50);
+            }
+            
+            // Re-initialize if page is loaded via router (for SPA)
+            window.addEventListener('load', function() {
+                initAttempts = 0;
+                setTimeout(attemptInit, 200);
+            });
+            
+            // Use MutationObserver to detect when gallery is added to DOM
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.addedNodes.length > 0) {
+                        const hasGalleryItems = document.querySelectorAll('.gallery-item').length > 0;
+                        if (hasGalleryItems && images.length === 0) {
+                            initAttempts = 0;
+                            setTimeout(attemptInit, 50);
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+            
+            // Expose init function for router
+            window.initGalleryLightbox = function() {
+                initAttempts = 0;
+                setTimeout(attemptInit, 100);
+            };
+        })();
+    </script>
+    
 <script src="../js/main.js"></script>
 </body>
 </html>
