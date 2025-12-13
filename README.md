@@ -34,7 +34,7 @@ F Lab is an educational organization focused on empowering young innovators thro
 3. **Programmes** (`#/programmes`) - Educational programs and initiatives
 4. **Publications** (`#/publications`) - Research papers and articles
 5. **Team** (`#/team`) - Board of Directors, Advisors, and Executive Team
-6. **Gallery** (`#/gallery`) - Photo gallery and media
+
 7. **Blog** (`#/blog`) - Blog posts and news
 8. **Shop** (`#/shop`) - Products and merchandise
 9. **Contact Us** (`#/contact`) - Contact information and form
@@ -59,7 +59,7 @@ web/
 │   ├── about.html
 │   ├── blog.html
 │   ├── contact.html
-│   ├── gallery.html
+
 │   ├── programmes.html
 │   ├── publications.html
 │   ├── shop.html

@@ -38,7 +38,7 @@ function markInitialLoadComplete() {
 
 // Initialize on DOM ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // initializePageLoader(); // Loader removed
         initializeNavigation();
         initializeCarousel();
@@ -72,14 +72,14 @@ function initializeNavigation() {
             currentRoute = '/' + pathname.split('/').pop().replace('.html', '');
         }
     }
-    
+
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-    
+
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
         // Remove active class first
         link.classList.remove('active');
-        
+
         // Get route from link href
         let linkRoute = null;
         if (linkHref && linkHref.startsWith('#')) {
@@ -96,8 +96,7 @@ function initializeNavigation() {
                 linkRoute = '/publications';
             } else if (linkHref.includes('team')) {
                 linkRoute = '/team';
-            } else if (linkHref.includes('gallery')) {
-                linkRoute = '/gallery';
+
             } else if (linkHref.includes('blog')) {
                 linkRoute = '/blog';
             } else if (linkHref.includes('shop')) {
@@ -110,7 +109,7 @@ function initializeNavigation() {
                 linkRoute = '/safeguard';
             }
         }
-        
+
         // Check if this link matches the current route
         if (linkRoute && linkRoute === currentRoute) {
             link.classList.add('active');
@@ -124,29 +123,29 @@ function initializeMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
-    
+
     if (!mobileMenuBtn || !mobileMenu) {
         console.warn('Mobile menu elements not found');
         return;
     }
-    
+
     // Remove any existing event listeners by cloning and replacing
     const newBtn = mobileMenuBtn.cloneNode(true);
     mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
-    
+
     // Get fresh references after replacement
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const icon = document.getElementById('menu-icon');
     const close = document.getElementById('close-icon');
-    
+
     if (!btn || !menu) return;
-    
-    btn.addEventListener('click', function(e) {
+
+    btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
         const isHidden = menu.classList.contains('hidden');
-        
+
         if (isHidden) {
             menu.classList.remove('hidden');
             if (icon) icon.classList.add('hidden');
@@ -157,11 +156,11 @@ function initializeMobileMenu() {
             if (close) close.classList.add('hidden');
         }
     });
-    
+
     // Close mobile menu when clicking on a link
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             menu.classList.add('hidden');
             if (icon) icon.classList.remove('hidden');
             if (close) close.classList.add('hidden');
@@ -173,18 +172,18 @@ function initializeMobileMenu() {
 function initializeNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
-    
+
     let lastScroll = 0;
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const currentScroll = window.pageYOffset;
-        
+
         if (currentScroll > 50) {
             navbar.classList.add('navbar-scrolled');
         } else {
             navbar.classList.remove('navbar-scrolled');
         }
-        
+
         lastScroll = currentScroll;
     });
 }
@@ -193,17 +192,17 @@ function initializeNavbarScroll() {
 function initializeCarousel() {
     const carousel = document.querySelector('.carousel');
     if (!carousel) return;
-    
+
     const slides = carousel.querySelectorAll('.carousel-item');
     const totalSlides = slides.length;
     let currentSlide = 0;
     let autoPlayInterval = null;
     let isUserInteracting = false;
-    
+
     // Function to scroll to a specific slide
     function goToSlide(slideIndex) {
         if (slideIndex < 0 || slideIndex >= totalSlides) return;
-        
+
         currentSlide = slideIndex;
         const slideWidth = carousel.offsetWidth;
         carousel.scrollTo({
@@ -212,13 +211,13 @@ function initializeCarousel() {
         });
         updateCarouselNavigation();
     }
-    
+
     // Update carousel navigation
     function updateCarouselNavigation() {
         // Update indicator buttons
         const indicators = document.querySelectorAll('.carousel-indicator');
         if (!indicators.length) return;
-        
+
         indicators.forEach((indicator, index) => {
             if (index === currentSlide) {
                 indicator.classList.add('bg-white', 'bg-opacity-80', 'ring-2', 'ring-white', 'ring-opacity-80', 'scale-110');
@@ -231,7 +230,7 @@ function initializeCarousel() {
             }
         });
     }
-    
+
     // Auto-play carousel
     function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
@@ -242,18 +241,18 @@ function initializeCarousel() {
             }
         }, 5000); // Change slide every 5 seconds
     }
-    
+
     function stopAutoPlay() {
         if (autoPlayInterval) {
             clearInterval(autoPlayInterval);
             autoPlayInterval = null;
         }
     }
-    
+
     // Handle indicator button clicks
     const indicators = document.querySelectorAll('.carousel-indicator');
     indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', function(e) {
+        indicator.addEventListener('click', function (e) {
             e.preventDefault();
             isUserInteracting = true;
             goToSlide(index);
@@ -262,13 +261,13 @@ function initializeCarousel() {
             }, 6000); // Reset after 6 seconds
         });
     });
-    
+
     // Handle arrow button clicks
     const prevArrow = document.querySelector('.carousel-arrow-prev');
     const nextArrow = document.querySelector('.carousel-arrow-next');
-    
+
     if (prevArrow) {
-        prevArrow.addEventListener('click', function(e) {
+        prevArrow.addEventListener('click', function (e) {
             e.preventDefault();
             isUserInteracting = true;
             const prevSlide = (currentSlide - 1 + totalSlides) % totalSlides;
@@ -278,9 +277,9 @@ function initializeCarousel() {
             }, 6000);
         });
     }
-    
+
     if (nextArrow) {
-        nextArrow.addEventListener('click', function(e) {
+        nextArrow.addEventListener('click', function (e) {
             e.preventDefault();
             isUserInteracting = true;
             const nextSlide = (currentSlide + 1) % totalSlides;
@@ -290,9 +289,9 @@ function initializeCarousel() {
             }, 6000);
         });
     }
-    
+
     // Detect scroll position to update current slide
-    carousel.addEventListener('scroll', function() {
+    carousel.addEventListener('scroll', function () {
         const slideWidth = carousel.offsetWidth;
         const scrollLeft = carousel.scrollLeft;
         const newSlide = Math.round(scrollLeft / slideWidth);
@@ -301,15 +300,15 @@ function initializeCarousel() {
             updateCarouselNavigation();
         }
     });
-    
+
     // Pause auto-play on user interaction
     carousel.addEventListener('mouseenter', stopAutoPlay);
     carousel.addEventListener('mouseleave', startAutoPlay);
     carousel.addEventListener('touchstart', stopAutoPlay);
-    carousel.addEventListener('touchend', function() {
+    carousel.addEventListener('touchend', function () {
         setTimeout(startAutoPlay, 3000);
     });
-    
+
     // Initialize
     updateCarouselNavigation();
     startAutoPlay();
@@ -319,18 +318,18 @@ function initializeCarousel() {
 function initializeTestimonialsSlider() {
     const slider = document.getElementById('testimonials-slider');
     if (!slider) return;
-    
+
     const slides = slider.querySelectorAll('.testimonial-slide');
     const totalSlides = slides.length;
     const prevBtn = document.getElementById('testimonial-prev');
     const nextBtn = document.getElementById('testimonial-next');
     const indicators = document.querySelectorAll('.testimonial-indicator');
-    
+
     let currentIndex = 0;
     let slidesPerView = 1;
     let autoPlayInterval = null;
     let isUserInteracting = false;
-    
+
     // Calculate slides per view based on screen width
     function updateSlidesPerView() {
         const width = window.innerWidth;
@@ -342,12 +341,12 @@ function initializeTestimonialsSlider() {
             slidesPerView = 1;
         }
     }
-    
+
     // Calculate max index
     function getMaxIndex() {
         return Math.max(0, totalSlides - slidesPerView);
     }
-    
+
     // Update slider position
     function updateSliderPosition() {
         const slideWidth = slider.offsetWidth / slidesPerView;
@@ -355,12 +354,12 @@ function initializeTestimonialsSlider() {
         slider.style.transform = `translateX(${offset}px)`;
         updateIndicators();
     }
-    
+
     // Update indicators
     function updateIndicators() {
         const maxIndex = getMaxIndex();
         const totalGroups = maxIndex + 1;
-        
+
         indicators.forEach((indicator, index) => {
             if (index < totalGroups) {
                 indicator.style.display = 'block';
@@ -376,19 +375,19 @@ function initializeTestimonialsSlider() {
             }
         });
     }
-    
+
     // Go to specific slide
     function goToSlide(index) {
         const maxIndex = getMaxIndex();
         currentIndex = Math.max(0, Math.min(index, maxIndex));
         updateSliderPosition();
     }
-    
+
     // Previous slide
     function prevSlide() {
         goToSlide(currentIndex - 1);
     }
-    
+
     // Next slide
     function nextSlide() {
         const maxIndex = getMaxIndex();
@@ -398,7 +397,7 @@ function initializeTestimonialsSlider() {
             goToSlide(0); // Loop back to start
         }
     }
-    
+
     // Auto-play functionality
     function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
@@ -408,17 +407,17 @@ function initializeTestimonialsSlider() {
             }
         }, 5000); // Change every 5 seconds
     }
-    
+
     function stopAutoPlay() {
         if (autoPlayInterval) {
             clearInterval(autoPlayInterval);
             autoPlayInterval = null;
         }
     }
-    
+
     // Event listeners for navigation buttons
     if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
+        prevBtn.addEventListener('click', function () {
             isUserInteracting = true;
             prevSlide();
             setTimeout(() => {
@@ -426,9 +425,9 @@ function initializeTestimonialsSlider() {
             }, 6000);
         });
     }
-    
+
     if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
+        nextBtn.addEventListener('click', function () {
             isUserInteracting = true;
             nextSlide();
             setTimeout(() => {
@@ -436,10 +435,10 @@ function initializeTestimonialsSlider() {
             }, 6000);
         });
     }
-    
+
     // Event listeners for indicators
     indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', function() {
+        indicator.addEventListener('click', function () {
             isUserInteracting = true;
             goToSlide(index);
             setTimeout(() => {
@@ -447,14 +446,14 @@ function initializeTestimonialsSlider() {
             }, 6000);
         });
     });
-    
+
     // Pause auto-play on hover
     slider.addEventListener('mouseenter', stopAutoPlay);
     slider.addEventListener('mouseleave', startAutoPlay);
-    
+
     // Handle window resize
     let resizeTimeout;
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             const oldSlidesPerView = slidesPerView;
@@ -465,7 +464,7 @@ function initializeTestimonialsSlider() {
             updateSliderPosition();
         }, 250);
     });
-    
+
     // Initialize
     updateSlidesPerView();
     updateSliderPosition();

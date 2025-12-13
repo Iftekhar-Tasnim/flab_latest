@@ -20,7 +20,7 @@ This is a static multipage website for F Lab organization. The site will showcas
 3. **Programmes** - Programs/initiatives offered
 4. **Publications** - Research papers, articles, reports
 5. **Team** - Team members and staff
-6. **Gallery** - Photo gallery and media
+
 7. **Blog** - Blog posts and news
 8. **Shop** - Products/merchandise
 9. **Contact Us** - Contact information and form
@@ -135,12 +135,7 @@ This is a static multipage website for F Lab organization. The site will showcas
 - Roles and responsibilities
 - Contact information for team members
 
-### Phase 6: Gallery Page
-- Photo galleries organized by category
-- Event photos
-- Project photos
-- Lightbox/modal for image viewing
-- Image captions
+
 
 ### Phase 7: Blog Page
 - Blog post listings
